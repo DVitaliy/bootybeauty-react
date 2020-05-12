@@ -1,2 +1,1 @@
-# bootybeauty-react
-Created with CodeSandbox
+Readme
