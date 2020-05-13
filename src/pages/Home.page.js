@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import t from 'translation'
+//import t from 'translation'
 
 const Home = () => {
   useEffect(() => {
@@ -9,10 +9,6 @@ const Home = () => {
       console.log('return Home page')
     }
   })
-  return (
-    <h1>
-      Home page {`${t('app.title')}`} {t('app.title')}
-    </h1>
-  )
+  return <h1>Home page</h1>
 }
 export default Home

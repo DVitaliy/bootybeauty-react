@@ -1,4 +1,76 @@
-import { default as en } from './en'
+import React, { createContext, useState, useEffect, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+
+const LocalizationContext = createContext()
+export const useTranslate = () => useContext(LocalizationContext)
+
+export const Localization = ({ children, byDefault }) => {
+  console.log('init _____Localization: ', byDefault)
+
+  const [language, setLanguage] = useState(byDefault)
+  const [base, setBase] = useState({})
+  const { location } = useHistory()
+
+  useEffect(() => {
+    console.log('!!!!!!!!!!!!!!useEffect')
+    const [, pathMatch = byDefault] =
+      location.pathname.match(/^\/(\w{2})\//) || []
+
+    console.log('1 setLanguage', pathMatch)
+    setLanguage(pathMatch)
+
+    const importBase = async lng => {
+      console.log('start importBase')
+      let data = {}
+      try {
+        const result = await import(`./${lng}`)
+        data = { ...result.default }
+      } catch {}
+
+      console.log('get data', data)
+      setBase({
+        ...base,
+        [lng]: data
+      })
+    }
+
+    if (!(pathMatch in base)) importBase(pathMatch)
+
+    /*window.addEventListener(
+      'hashchange',
+      e => {
+        console.log(e)
+        console.log('e.newURL: ', e.newURL)
+        console.log('e.oldURL: ', e.oldURL)
+        console.log('location: ', location)
+
+        const [, lng = ''] = e.newURL.match(/#lng=(\w{2})/) || []
+        if (!lng) return
+        //window.navigator.language.slice(0, 2)
+        console.log('lng: ', lng)
+        // setTimeout(() => {
+        //   document.location.replace('https://qh6eu.csb.app/e')
+        //   document.location.reload()
+        // }, 100)
+      },
+      false
+    )*/
+
+    return () => {
+      console.log('-------------return useEffect Localization')
+    }
+    // eslint-disable-next-line
+  }, [])
+
+  const t = text => (base[language] && base[language][text]) || text
+  return (
+    <LocalizationContext.Provider value={t}>
+      {children}
+    </LocalizationContext.Provider>
+  )
+}
+
+/*import { default as en } from './en'
 import { default as ru } from './ru'
 
 const language = (({ pathname }) => {
@@ -31,11 +103,14 @@ window.addEventListener(
 
     const [, lng = ''] = e.newURL.match(/#lng=(\w{2})/) || []
     if (!lng) return
-
     //window.navigator.language.slice(0, 2)
     console.log('lng: ', lng)
+    setTimeout(() => {
+      document.location.replace('https://qh6eu.csb.app/e')
+      document.location.reload()
+    }, 100)
   },
   false
 )
 
-export const getLanguage = () => language
+export const getLanguage = () => language*/

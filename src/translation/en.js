@@ -1,3 +1,5 @@
 export default {
-  'app.title': 'Booty Beauty'
+  test: 'TEST'
 }
+
+console.log('&&&&&&&&')
