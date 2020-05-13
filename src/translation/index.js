@@ -9,10 +9,17 @@ export const Localization = ({ children, byDefault }) => {
 
   const [language, setLanguage] = useState(byDefault)
   const [base, setBase] = useState({})
-  const { location } = useHistory()
+  const { location, listen } = useHistory()
 
   useEffect(() => {
-    console.log('!!!!!!!!!!!!!!useEffect')
+    listen((loc, action) => {
+      console.log('location', loc)
+      console.log('action', action)
+    })
+    // eslint-disable-next-line
+  }, [])
+  useEffect(() => {
+    console.log('!!!!!!!!!!!!!!useEffect', location)
     const [, pathMatch = byDefault] =
       location.pathname.match(/^\/(\w{2})\//) || []
 
@@ -36,35 +43,16 @@ export const Localization = ({ children, byDefault }) => {
 
     if (!(pathMatch in base)) importBase(pathMatch)
 
-    /*window.addEventListener(
-      'hashchange',
-      e => {
-        console.log(e)
-        console.log('e.newURL: ', e.newURL)
-        console.log('e.oldURL: ', e.oldURL)
-        console.log('location: ', location)
-
-        const [, lng = ''] = e.newURL.match(/#lng=(\w{2})/) || []
-        if (!lng) return
-        //window.navigator.language.slice(0, 2)
-        console.log('lng: ', lng)
-        // setTimeout(() => {
-        //   document.location.replace('https://qh6eu.csb.app/e')
-        //   document.location.reload()
-        // }, 100)
-      },
-      false
-    )*/
-
     return () => {
       console.log('-------------return useEffect Localization')
     }
     // eslint-disable-next-line
-  }, [])
+    //ee
+  }, [base, byDefault, location])
 
   const t = text => (base[language] && base[language][text]) || text
   return (
-    <LocalizationContext.Provider value={t}>
+    <LocalizationContext.Provider value={{ t, language, setLanguage }}>
       {children}
     </LocalizationContext.Provider>
   )
