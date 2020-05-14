@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { useAuthentication } from '../authentication'
+import { useAuthentication } from '../../service/authentication'
 
 const NavBar = ({ children }) => {
   console.log('--init/NavBar')

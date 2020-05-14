@@ -3,7 +3,7 @@ import { Redirect, Route, Switch, Link } from 'react-router-dom'
 //import PropTypes from 'prop-types'
 import { Home, Beauty, Beauties } from 'pages'
 
-import { useTranslate } from '../components/localization'
+import { useTranslate } from './localization'
 import Header from '../components/header'
 
 const Routing = () => {
