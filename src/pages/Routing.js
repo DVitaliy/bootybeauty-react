@@ -7,8 +7,9 @@ import { useTranslate } from '../components/localization'
 import Header from '../components/header'
 
 const Routing = () => {
+  const { t, language } = useTranslate()
+
   console.log('-init/Routing')
-  const { t = _ => _, language = 'unknow' } = useTranslate()
 
   const ROOT_PATH = '/:language([a-z]{2})'
   const DEFAULT_PATH = `/${language}`
@@ -21,7 +22,9 @@ const Routing = () => {
       </h1>
       <Header />
       <Switch>
-        <Redirect exact from="/" to={`${DEFAULT_PATH}/`} />
+        <Route exact path="/">
+          {language && <Redirect to={`${DEFAULT_PATH}/`} />}
+        </Route>
 
         <Route exact path={ROOT_PATH}>
           <Home />
