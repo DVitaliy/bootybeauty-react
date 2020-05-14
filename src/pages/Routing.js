@@ -4,22 +4,7 @@ import { Redirect, Route, Switch, Link } from 'react-router-dom'
 import { Home, Beauty, Beauties } from 'pages'
 
 import { useTranslate } from '../components/localization'
-
-const NavBar = ({ children }) => {
-  console.log('--init/NavBar')
-
-  return (
-    <>
-      <Link to="/">Home</Link> | <Link to="/ua/beauties">Beauties</Link> |{' '}
-      <Link to="/sd-sdf">ErrorHash</Link> | <Link to="/fr/">FR home</Link> |{' '}
-      <Link to="/fr/beauties">FR beauties</Link> |{' '}
-      <Link to="/ua/">UA home</Link> |{' '}
-      <Link to="/ua/beauties">UA beauties</Link> |{' '}
-      <Link to="/ru/">RU home</Link> |{' '}
-      <Link to="/ru/beauties">RU beauties</Link> |{' '}
-    </>
-  )
-}
+import Header from '../components/header'
 
 const Routing = () => {
   console.log('-init/Routing')
@@ -34,7 +19,7 @@ const Routing = () => {
       <h1>
         {t('test')} {language}
       </h1>
-      <NavBar />
+      <Header />
       <Switch>
         <Redirect exact from="/" to={`${DEFAULT_PATH}/`} />
 
