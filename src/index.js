@@ -6,7 +6,7 @@ import { createBrowserHistory } from 'history'
 import { Localization } from './service/localization'
 import { Authentication } from './service/authentication'
 
-import Routing from './service/Routing'
+import Routing from './service/routing'
 //import API from "./service/api";
 import 'styles.css'
 

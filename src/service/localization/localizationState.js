@@ -64,7 +64,9 @@ const LocalizationState = ({ children, settings }) => {
 
   const t = text => (base[language] && base[language][text]) || text
   return (
-    <LocalizationContext.Provider value={{ t, language, setLanguage }}>
+    <LocalizationContext.Provider
+      value={{ t, language, setLanguage, byDefault }}
+    >
       {children}
     </LocalizationContext.Provider>
   )
