@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react'
-
+import React from 'react'
+import { useParams } from 'react-router-dom'
 //import t from 'translation'
 
 const Home = () => {
-  useEffect(() => {
-    console.log('Home page', process.env)
-    return () => {
-      console.log('return Home page')
-    }
-  })
-  return <h1>Home page</h1>
+  console.log('--init/Home')
+  let { language } = useParams()
+
+  return <h1>Home page {language}</h1>
 }
 export default Home

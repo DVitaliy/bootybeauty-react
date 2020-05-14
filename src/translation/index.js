@@ -4,51 +4,64 @@ import { useHistory } from 'react-router-dom'
 const LocalizationContext = createContext()
 export const useTranslate = () => useContext(LocalizationContext)
 
-export const Localization = ({ children, byDefault }) => {
-  console.log('init _____Localization: ', byDefault)
+export const Localization = ({ children, settings }) => {
+  const { byDefault } = settings
 
-  const [language, setLanguage] = useState(byDefault)
+  console.log('init/Localization')
+
+  const [language, setLanguage] = useState()
   const [base, setBase] = useState({})
-  const { location, listen } = useHistory()
+  const [path, setPath] = useState()
+
+  const history = useHistory()
 
   useEffect(() => {
-    listen((loc, action) => {
-      console.log('location', loc)
-      console.log('action', action)
+    console.log('run/useEffect (path)', path, language)
+    const [, pathMatch = language || byDefault] =
+      (path || history.location.pathname).match(/^\/(\w{2})\//) || []
+
+    console.log('   setLanguage', pathMatch)
+    if (pathMatch !== language) setLanguage(pathMatch)
+    // eslint-disable-next-line
+  }, [path])
+
+  useEffect(() => {
+    console.log('run/useEffect (1)')
+    let timerTimeout
+
+    console.log(' subscrube/history.listen')
+    history.listen(location => {
+      //console.log('********* history.listen ********* :', location)
+      if (timerTimeout) clearTimeout(timerTimeout)
+      timerTimeout = setTimeout(setPath.bind(null, location.pathname), 10)
     })
+    return () => {
+      console.log('return/useEffect (1)')
+    }
     // eslint-disable-next-line
   }, [])
+
   useEffect(() => {
-    console.log('!!!!!!!!!!!!!!useEffect', location)
-    const [, pathMatch = byDefault] =
-      location.pathname.match(/^\/(\w{2})\//) || []
-
-    console.log('1 setLanguage', pathMatch)
-    setLanguage(pathMatch)
-
+    console.log('run/useEffect (2)', language)
     const importBase = async lng => {
-      console.log('start importBase')
+      console.log('start/importBase (2)', lng)
       let data = {}
       try {
         const result = await import(`./${lng}`)
         data = { ...result.default }
       } catch {}
 
-      console.log('get data', data)
       setBase({
         ...base,
         [lng]: data
       })
     }
-
-    if (!(pathMatch in base)) importBase(pathMatch)
-
+    if (!language) return
+    if (!(language in base)) importBase(language)
     return () => {
-      console.log('-------------return useEffect Localization')
+      console.log('return/useEffect (2)')
     }
-    // eslint-disable-next-line
-    //ee
-  }, [base, byDefault, location])
+  }, [language, base])
 
   const t = text => (base[language] && base[language][text]) || text
   return (
@@ -57,48 +70,3 @@ export const Localization = ({ children, byDefault }) => {
     </LocalizationContext.Provider>
   )
 }
-
-/*import { default as en } from './en'
-import { default as ru } from './ru'
-
-const language = (({ pathname }) => {
-  const [, pathMatch = ''] = pathname.match(/^\/(\w{2})\//) || []
-
-  console.log('pathMatch:', pathMatch)
-  return pathMatch
-})(document.location)
-
-const { [language || process.env.APP_LOCALIZATION]: translate = 'en' } = {
-  en,
-  ru
-}
-
-console.log('set language:', language)
-console.log('set translate:', translate)
-
-const t = text => translate[text] || text
-
-export default t
-
-window.addEventListener(
-  'hashchange',
-  e => {
-    console.log(e)
-    console.log(document.location)
-    console.log('e.newURL: ', e.newURL)
-    console.log('e.oldURL: ', e.oldURL)
-    console.log('document.location: ', document.location.toString())
-
-    const [, lng = ''] = e.newURL.match(/#lng=(\w{2})/) || []
-    if (!lng) return
-    //window.navigator.language.slice(0, 2)
-    console.log('lng: ', lng)
-    setTimeout(() => {
-      document.location.replace('https://qh6eu.csb.app/e')
-      document.location.reload()
-    }, 100)
-  },
-  false
-)
-
-export const getLanguage = () => language*/

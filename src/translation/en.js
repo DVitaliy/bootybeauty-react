@@ -2,4 +2,4 @@ export default {
   test: 'TEST'
 }
 
-console.log('&&&&&&&&')
+console.log('enenenenenenenen')

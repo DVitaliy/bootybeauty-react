@@ -1,4 +1,4 @@
 export default {
   test: 'ТЕСТ'
 }
-console.log('@@@@@@@@')
+console.log('rururururururu')
