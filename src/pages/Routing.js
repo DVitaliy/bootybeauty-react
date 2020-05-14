@@ -3,7 +3,7 @@ import { Redirect, Route, Switch, Link } from 'react-router-dom'
 //import PropTypes from 'prop-types'
 import { Home, Beauty, Beauties } from 'pages'
 
-import { useTranslate } from '../translation'
+import { useTranslate } from '../components/localization'
 
 const NavBar = ({ children }) => {
   console.log('--init/NavBar')
@@ -23,7 +23,7 @@ const NavBar = ({ children }) => {
 
 const Routing = () => {
   console.log('-init/Routing')
-  const { t, language = 'unknow' } = useTranslate()
+  const { t = _ => _, language = 'unknow' } = useTranslate()
 
   const ROOT_PATH = '/:language([a-z]{2})'
   const DEFAULT_PATH = `/${language}`
@@ -37,6 +37,7 @@ const Routing = () => {
       <NavBar />
       <Switch>
         <Redirect exact from="/" to={`${DEFAULT_PATH}/`} />
+
         <Route exact path={ROOT_PATH}>
           <Home />
         </Route>

@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
-import { Localization } from './translation'
+import { Localization } from './components/localization'
+
 import Routing from './pages/Routing'
 //import API from "./service/api";
 import 'styles.css'
