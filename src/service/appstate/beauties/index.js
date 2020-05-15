@@ -12,16 +12,19 @@ const useBeauties = () => {
 
   const actions = {
     add() {
-      console.log('*AppStateState/appActions/add')
-      dispatch({
-        type: 'ADD_INIT'
-      })
-      setTimeout(() => {
+      return new Promise(function(resolve, reject) {
+        console.log('*AppStateState/appActions/add')
         dispatch({
-          type: 'ADD_SUCCESS',
-          payload: { name: 'Kira' }
+          type: 'ADD_INIT'
         })
-      }, 3000)
+        setTimeout(() => {
+          dispatch({
+            type: 'ADD_SUCCESS',
+            payload: { name: 'Kira' }
+          })
+          return resolve('payload')
+        }, 3000)
+      })
     }
   }
 

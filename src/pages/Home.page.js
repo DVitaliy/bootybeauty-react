@@ -11,6 +11,15 @@ const Home = () => {
   // List of beauties
   const { beauties } = appState
 
+  const handleClick = async evt => {
+    try {
+      const data = await appAction.beauties.add('SAME DAAT')
+      console.log(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <React.Fragment>
       <h1>Home page {language}</h1>
@@ -24,7 +33,7 @@ const Home = () => {
           ))}
         </div>
       )}
-      <button onClick={appAction.beauties.add}>add</button>
+      <button onClick={handleClick}>add</button>
     </React.Fragment>
   )
 }

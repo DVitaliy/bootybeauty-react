@@ -10,6 +10,7 @@ const NavBar = ({ children }) => {
   const { isAuthorized } = useAuthentication()
   const [appState] = useAppState()
   const { beauties } = appState
+
   return (
     <React.Fragment>
       <Link to="/">Home</Link> | <Link to="/ua/beauties">Beauties</Link> |{' '}
