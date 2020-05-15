@@ -15,6 +15,9 @@ export default (state, action) => {
       }
     case 'ADD_FAILURE':
       return { ...state }
+    case 'TEST':
+      console.log('*beauties/Reduser/', state, action)
+      return { ...state }
     default:
       throw new Error()
   }

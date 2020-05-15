@@ -4,7 +4,6 @@ import { Redirect, Route, Switch, Link } from 'react-router-dom'
 import { Home, Beauty, Beauties } from 'pages'
 
 import { useTranslate } from './localization'
-import { AppState } from './appstate'
 
 import Header from '../components/header'
 
@@ -17,7 +16,7 @@ const Routing = () => {
   const DEFAULT_PATH = `/${language}`
 
   return (
-    <AppState>
+    <>
       {console.log('-render/Routing')}
       <h1>
         {t('test')} {language}
@@ -46,7 +45,7 @@ const Routing = () => {
           <h1>No match</h1>
         </Route>
       </Switch>
-    </AppState>
+    </>
   )
 }
 

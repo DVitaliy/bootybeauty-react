@@ -11,13 +11,18 @@ const Home = () => {
   // List of beauties
   const { beauties } = appState
 
-  const handleClick = async evt => {
+  const handleClickAsync = async () => {
     try {
-      const data = await appAction.beauties.add('SAME DAAT')
-      console.log(data)
+      const data = await appAction.beauties.callAsync('callAsync')
+      console.log('handleClickAsync', data)
     } catch (e) {
-      console.log(e)
+      console.log('error handleClickAsync', e)
     }
+  }
+
+  const handleClickSync = () => {
+    appAction.beauties.callSync()
+    console.log('handleClickSync', beauties)
   }
 
   return (
@@ -33,7 +38,9 @@ const Home = () => {
           ))}
         </div>
       )}
-      <button onClick={handleClick}>add</button>
+      <button onClick={handleClickAsync}>callAsync</button>
+      <button onClick={handleClickSync}>callSync</button>
+      <button onClick={() => appAction.beauties.func1()}>func1</button>
     </React.Fragment>
   )
 }

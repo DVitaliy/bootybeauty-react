@@ -1,6 +1,6 @@
-import { useReducer } from 'react'
+import { useReducer, useCallback, useMemo } from 'react'
 import { default as Reducer } from './reducer'
-//import { * } from './actions'
+import Actions from './actions'
 
 const useBeauties = () => {
   const initialState = {
@@ -10,23 +10,21 @@ const useBeauties = () => {
   }
   const [state, dispatch] = useReducer(Reducer, initialState)
 
-  const actions = {
-    add() {
-      return new Promise(function(resolve, reject) {
-        console.log('*AppStateState/appActions/add')
-        dispatch({
-          type: 'ADD_INIT'
-        })
-        setTimeout(() => {
-          dispatch({
-            type: 'ADD_SUCCESS',
-            payload: { name: 'Kira' }
-          })
-          return resolve('payload')
-        }, 3000)
-      })
-    }
-  }
+  const proxyDispatch = useCallback(
+    action => {
+      if (typeof action === 'function') return action(dispatch, state, {}) //TODO add API
+      return dispatch(action)
+    },
+    [state]
+  )
+  const actions = useMemo(() => {
+    return Object.fromEntries(
+      Object.entries(Actions).map(action => [
+        action[0],
+        data => proxyDispatch(action[1](data))
+      ])
+    )
+  }, [proxyDispatch])
 
   return [state, actions]
 }

@@ -1,15 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { useAuthentication } from '../../service/authentication'
-
 import { useAppState } from '../../service/appstate'
 
 const NavBar = ({ children }) => {
   console.log('--init/NavBar')
-  const { isAuthorized } = useAuthentication()
-  const [appState] = useAppState()
-  const { beauties } = appState
+  const [appState, appAction] = useAppState()
+  const { beauties, auth } = appState
+  const { isAuthorized } = auth
 
   return (
     <React.Fragment>
@@ -20,7 +18,28 @@ const NavBar = ({ children }) => {
       <Link to="/ua/beauties">UA beauties</Link> |{' '}
       <Link to="/ru/">RU home</Link> |{' '}
       <Link to="/ru/beauties">RU beauties</Link> |{' '}
-      {isAuthorized ? <span>Authorized!</span> : <span>No Authorized</span>}
+      {isAuthorized ? (
+        <span>
+          Authorized!
+          <button onClick={() => appAction.auth.clearTokensSync()}>
+            logout
+          </button>
+        </span>
+      ) : (
+        <span>
+          No Authorized{' '}
+          <button
+            onClick={() =>
+              appAction.auth.authenticationSync({
+                accessToken: 'token',
+                refreshToken: 'token'
+              })
+            }
+          >
+            login
+          </button>
+        </span>
+      )}
       <div>
         {beauties.isLoading ? (
           <div>Loading ...</div>
