@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { useAppState } from '../../service/appstate'
+import { useAppState } from '../service/appstate'
 
 const NavBar = ({ children }) => {
   console.log('--init/NavBar')
@@ -40,6 +40,24 @@ const NavBar = ({ children }) => {
           </button>
         </span>
       )}
+      <button
+        onClick={async () => {
+          const data = await appAction.auth.authentication()
+          console.log(data)
+        }}
+      >
+        api.fakeGET
+      </button>
+      <button
+        onClick={async () => {
+          const data = await appAction.auth.authentication2()
+          console.log(data)
+        }}
+      >
+        show api
+      </button>
+      <button onClick={() => appAction.auth.clearTokensSync()}>clean</button>
+      <button onClick={() => appAction.auth.loadTokensSync()}>load</button>
       <div>
         {beauties.isLoading ? (
           <div>Loading ...</div>

@@ -1,4 +1,4 @@
-export default (state, action) => {
+const Reduser = (state, action) => {
   switch (action.type) {
     case 'ADD_INIT':
       return {
@@ -17,9 +17,16 @@ export default (state, action) => {
       return {
         ...state,
         accessToken: null,
-        refreshToken: null
+        refreshToken: null,
+        isLoading: false
+      }
+    case 'load':
+      return {
+        ...state,
+        isLoading: true
       }
     default:
       throw new Error()
   }
 }
+export default Reduser

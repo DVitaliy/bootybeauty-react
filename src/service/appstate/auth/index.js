@@ -1,8 +1,14 @@
-import { useReducer, useCallback, useMemo } from 'react'
-import { default as Reducer } from './reducer'
-import Actions from './actions'
+/** TODO
+ * Set LOGICAL (in state) enum value ex. Clear, FromCache, Loads
+ * set Reduser and Actions
+ */
 
-const useAuth = () => {
+import { useReducer, useEffect } from 'react'
+import Reducer from './reducer'
+import Actions from './actions'
+import useAsyncActions from '../useAsyncActions'
+
+const useAuth = api => {
   const initialState = {
     accessToken: null,
     refreshToken: null,
@@ -11,22 +17,11 @@ const useAuth = () => {
   }
   const [state, dispatch] = useReducer(Reducer, initialState)
 
-  const proxyDispatch = useCallback(
-    action => {
-      if (typeof action === 'function') return action(dispatch, state, {}) //TODO add API
-      return dispatch(action)
-    },
-    [state]
-  )
-  const actions = useMemo(() => {
-    return Object.fromEntries(
-      Object.entries(Actions).map(action => [
-        action[0],
-        data => proxyDispatch(action[1](data))
-      ])
-    )
-  }, [proxyDispatch])
+  useEffect(() => {
+    api.setToken(state.accessToken)
+  }, [api, state.accessToken])
 
-  return [{ ...state, isAuthorized: !!state.accessToken }, actions]
+  const actions = useAsyncActions({ state, dispatch, api }, Actions)
+  return [{ isAuthorized: !!state.accessToken }, actions]
 }
 export default useAuth

@@ -1,8 +1,15 @@
-import { useReducer, useCallback, useMemo } from 'react'
-import { default as Reducer } from './reducer'
-import Actions from './actions'
+/** TODO
+ * Clear initialState (remove payload data)
+ * Set LOGICAL (in state) enum value ex. Clear, FromCache, Loads
+ * set Reduser and Actions
+ */
 
-const useBeauties = () => {
+import { useReducer } from 'react'
+import Reducer from './reducer'
+import Actions from './actions'
+import useAsyncActions from '../useAsyncActions'
+
+const useBeauties = api => {
   const initialState = {
     data: [{ name: 'Sandra' }, { name: 'Lora' }],
     isLoading: false,
@@ -10,21 +17,7 @@ const useBeauties = () => {
   }
   const [state, dispatch] = useReducer(Reducer, initialState)
 
-  const proxyDispatch = useCallback(
-    action => {
-      if (typeof action === 'function') return action(dispatch, state, {}) //TODO add API
-      return dispatch(action)
-    },
-    [state]
-  )
-  const actions = useMemo(() => {
-    return Object.fromEntries(
-      Object.entries(Actions).map(action => [
-        action[0],
-        data => proxyDispatch(action[1](data))
-      ])
-    )
-  }, [proxyDispatch])
+  const actions = useAsyncActions({ state, dispatch, api }, Actions)
 
   return [state, actions]
 }

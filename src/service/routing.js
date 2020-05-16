@@ -1,3 +1,16 @@
+/** TODO
+ * Clear logs
+ * Add privat pages ex. MyPage (for Bayers, Admins, Model)
+ * Make page Autorization (Login, Logout or use Passport STRATEGIES)
+ *
+ * work by:
+ * - HomePage
+ * - BeautiesPages
+ * - BeautyPage
+ * - NoMatchPage
+ *
+ * */
+
 import React from 'react'
 import { Redirect, Route, Switch, Link } from 'react-router-dom'
 //import PropTypes from 'prop-types'

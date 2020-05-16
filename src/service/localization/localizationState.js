@@ -1,3 +1,9 @@
+/** TODO
+ * Clear all console.log
+ * Make tools for creating automatically base files
+ * Publish this module on npm service
+ */
+
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 

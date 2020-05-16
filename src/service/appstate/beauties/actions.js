@@ -1,33 +1,12 @@
-function add1(data) {
-  console.log('ADD', data)
-  return function(dispatch, getState, api) {
-    console.log('api', api)
-
-    return new Promise(function(resolve, reject) {
-      console.log('*AppStateState/appActions/add')
-      dispatch({
-        type: 'ADD_INIT'
-      })
-      setTimeout(() => {
-        dispatch({
-          type: 'ADD_SUCCESS',
-          payload: data
-        })
-        return resolve('payload')
-      }, 3000)
-    })
-  }
-}
-
 const Actions = {
-  callAsync: data => (dispatch, state, api) => {
+  callAsync: data => (state, dispatch, api) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         dispatch({ type: 'ADD_SUCCESS', payload: { name: 'werwer' } })
         console.log('**beauties/Actions/callAsync/Promise', state)
 
-        return reject(data)
-      }, 3000)
+        return resolve(data)
+      }, 1000)
     })
   },
   callSync: data => ({
@@ -35,7 +14,7 @@ const Actions = {
     payload: { name: 'callSync' }
   }),
   func11: data => console.log('state'),
-  func1: data => (dispatch, state) => console.log('func1 getState', state),
+  func1: data => state => console.log('func1 getState', state),
   func2: data => data,
   func3: data => data,
   func4: data => data,

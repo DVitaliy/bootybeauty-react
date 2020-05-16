@@ -1,4 +1,4 @@
-export default (state, action) => {
+const Reduser = (state, action) => {
   switch (action.type) {
     case 'ADD_INIT':
       return {
@@ -22,3 +22,4 @@ export default (state, action) => {
       throw new Error()
   }
 }
+export default Reduser
