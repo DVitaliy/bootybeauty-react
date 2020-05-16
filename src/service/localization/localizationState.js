@@ -42,6 +42,7 @@ const LocalizationState = ({ children, settings }) => {
     })
     return () => {
       console.log('return/useEffect (1)')
+      alert('return/useEffect (1)')
     }
     // eslint-disable-next-line
   }, [])

@@ -7,6 +7,7 @@ import { useReducer, useEffect } from 'react'
 import Reducer from './reducer'
 import Actions from './actions'
 import useAsyncActions from '../useAsyncActions'
+import useStoreState from '../useStoreState'
 
 const useAuth = api => {
   const initialState = {
@@ -15,13 +16,20 @@ const useAuth = api => {
     isLoading: false,
     isError: false
   }
-  const [state, dispatch] = useReducer(Reducer, initialState)
+
+  const [storeState, storeSubscribe] = useStoreState(initialState, 'auth')
+  const [state, dispatch] = useReducer(Reducer, storeState)
+  const { accessToken } = state
 
   useEffect(() => {
-    api.setToken(state.accessToken)
-  }, [api, state.accessToken])
+    storeSubscribe({ accessToken })
+  }, [storeSubscribe, accessToken])
+
+  useEffect(() => {
+    api.setToken(accessToken)
+  }, [api, accessToken])
 
   const actions = useAsyncActions({ state, dispatch, api }, Actions)
-  return [{ isAuthorized: !!state.accessToken }, actions]
+  return [{ ...state, isAuthorized: !!accessToken }, actions]
 }
 export default useAuth
