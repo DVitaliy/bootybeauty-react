@@ -1,6 +1,7 @@
 /** TODO
  * Clear all console.log
  * Make tools for creating automatically base files
+ * Add ability detect automatically user lang (userAgent)
  * Publish this module on npm service
  */
 

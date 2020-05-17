@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppState } from '../service/appstate'
 
-const Home = () => {
+const delay = ms => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve()
+    }, ms)
+  })
+}
+
+const StatisticPrivat = React.lazy(() =>
+  delay(2000).then(() => import('../components/statistic.privat'))
+)
+
+const HomePage = () => {
   console.log('--init/Home', useAppState())
 
   let { language } = useParams()
   const [appState, appAction] = useAppState()
 
   // List of beauties
-  const { beauties } = appState
+  const { beauties, auth } = appState
+  const { isAuthorized } = auth
 
   const handleClickAsync = async () => {
     try {
@@ -28,6 +41,9 @@ const Home = () => {
   return (
     <React.Fragment>
       <h1>Home page {language}</h1>
+      <Suspense fallback={<div>Загрузка...</div>}>
+        {isAuthorized && <StatisticPrivat />}
+      </Suspense>
       {beauties.isError && <div>Something went wrong ...</div>}
       {beauties.isLoading ? (
         <div>Loading ...</div>
@@ -46,4 +62,4 @@ const Home = () => {
     </React.Fragment>
   )
 }
-export default Home
+export default HomePage

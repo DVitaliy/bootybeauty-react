@@ -1,4 +1,12 @@
-// TODO
+/** TODO
+ *
+ * Priority Flow:
+ * (!) - critical
+ * (A) - high
+ * (B) - medium
+ * (C) - low
+ *
+ **/
 
 import React from 'react'
 import { render } from 'react-dom'

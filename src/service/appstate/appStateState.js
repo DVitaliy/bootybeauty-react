@@ -1,4 +1,5 @@
 /** TODO
+ *
  * Clear log
  * Finish 'abortResponse' function, set conditions for 500, 401 responce status
  *
@@ -7,8 +8,8 @@
 import React, { useEffect } from 'react'
 import AppStateContext from './appStateContext'
 
-import useAuth from './auth'
-import useBeauties from './beauties'
+import { useAuth } from './auth'
+import { useBeauties } from './beauties'
 
 const AppStateState = ({ children, settings }) => {
   const { api } = settings
