@@ -4,10 +4,11 @@
  * set Reduser and Actions
  */
 
-import { useReducer } from 'react'
+import { useReducer /*, useEffect*/ } from 'react'
 import Reducer from './reducer'
 import Actions from './actions'
 import useAsyncActions from '../useAsyncActions'
+//import useStoreState from '../useStoreState'
 
 const useBeauties = api => {
   const initialState = {
@@ -15,7 +16,13 @@ const useBeauties = api => {
     isLoading: false,
     isError: false
   }
-  const [state, dispatch] = useReducer(Reducer, initialState)
+  //const [storeState, storeSubscribe] = useStoreState(initialState, 'beauties')
+  const [state, dispatch] = useReducer(Reducer, initialState /*storeState*/)
+
+  // const { data } = state
+  // useEffect(() => {
+  //   storeSubscribe({ data })
+  // }, [storeSubscribe, data])
 
   const actions = useAsyncActions({ state, dispatch, api }, Actions)
 

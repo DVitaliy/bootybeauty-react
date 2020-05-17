@@ -38,7 +38,9 @@ const Home = () => {
           ))}
         </div>
       )}
-      <button onClick={handleClickAsync}>callAsync</button>
+      <button onClick={handleClickAsync} disabled={beauties.isLoading}>
+        callAsync
+      </button>
       <button onClick={handleClickSync}>callSync</button>
       <button onClick={() => appAction.beauties.func1()}>func1</button>
     </React.Fragment>

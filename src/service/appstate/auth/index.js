@@ -30,6 +30,6 @@ const useAuth = api => {
   }, [api, accessToken])
 
   const actions = useAsyncActions({ state, dispatch, api }, Actions)
-  return [{ ...state, isAuthorized: !!accessToken }, actions]
+  return [{ isAuthorized: !!accessToken }, actions]
 }
 export default useAuth

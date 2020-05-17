@@ -1,8 +1,9 @@
 const Actions = {
   callAsync: data => (state, dispatch, api) => {
     return new Promise((resolve, reject) => {
+      dispatch({ type: 'ADD_INIT' })
       setTimeout(() => {
-        dispatch({ type: 'ADD_SUCCESS', payload: { name: 'werwer' } })
+        dispatch({ type: 'ADD_SUCCESS', payload: { name: 'callAsync' } })
         console.log('**beauties/Actions/callAsync/Promise', state)
 
         return resolve(data)
