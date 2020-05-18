@@ -17,6 +17,7 @@ import { Redirect, Route, Switch, Link } from 'react-router-dom'
 //import PropTypes from 'prop-types'
 import { Beauty, Beauties } from 'pages'
 
+//import { HomePage } from '../pages/HomePage'
 import { useTranslate } from './localization'
 
 import Header from '../components/header'
@@ -24,7 +25,7 @@ import Header from '../components/header'
 const delay = ms => {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve()
+      return resolve()
     }, ms)
   })
 }
@@ -32,6 +33,7 @@ const delay = ms => {
 const HomePage = React.lazy(() =>
   delay(2000).then(() => import('../pages/HomePage'))
 )
+//const HomePage = React.lazy(() => import('../pages/HomePage'))
 
 const Routing = () => {
   const { t, language } = useTranslate()
@@ -42,36 +44,67 @@ const Routing = () => {
   const DEFAULT_PATH = `/${language}`
 
   return (
-    <Suspense fallback={<div>Загрузка...</div>}>
-      {console.log('-render/Routing')}
+    <React.Fragment>
       <h1>
         {t('test')} {language}
       </h1>
       <Header />
-      <Switch>
-        <Route exact path="/">
-          {language && <Redirect to={`${DEFAULT_PATH}/`} />}
-        </Route>
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to={`${DEFAULT_PATH}/`} />
+          </Route>
+          {/* <Route
+            exact
+            path="/"
+            render={routeProps => (
+              <div>
+                {console.log('Switch - Redirect', language, routeProps)}
+                <h1>Redirect</h1>
+                {language && <Redirect to={`${DEFAULT_PATH}/`} />}
+              </div>
+            )}
+          /> */}
 
-        <Route exact path={ROOT_PATH}>
-          <HomePage />
-        </Route>
+          <Route exact path={ROOT_PATH}>
+            <HomePage />
+          </Route>
 
-        <Route exact path={`${ROOT_PATH}/beauties`}>
-          <Beauties />
-          <Link to={`${DEFAULT_PATH}/alphachanneling`}>beauty</Link> |{' '}
-          <Link to={`${DEFAULT_PATH}/alphachanneling/1234`}>booty</Link>
-        </Route>
+          {/* <Route
+            exact
+            path={ROOT_PATH}
+            render={routeProps => (
+              <div>
+                {console.log('Switch - HomePage', routeProps)}
+                <h1>HomePage</h1>
+              </div>
+            )}
+          /> */}
 
-        <Route path={`${ROOT_PATH}/:beauty/:booty([0-9]{4})?`}>
-          <Beauty />
-        </Route>
+          <Route exact path={`${ROOT_PATH}/beauties`}>
+            <Beauties />
+            <Link to={`${DEFAULT_PATH}/alphachanneling`}>beauty</Link> |{' '}
+            <Link to={`${DEFAULT_PATH}/alphachanneling/1234`}>booty</Link>
+          </Route>
 
-        <Route>
-          <h1>No match</h1>
-        </Route>
-      </Switch>
-    </Suspense>
+          <Route path={`${ROOT_PATH}/:beauty/:booty([0-9]{4})?`}>
+            <Beauty />
+          </Route>
+
+          {/* <Route
+            render={routeProps => (
+              <div>
+                {console.log('Switch - No match', routeProps)}
+                <h1>No match</h1>
+              </div>
+            )}
+          /> */}
+          <Route>
+            <h1>No match</h1>
+          </Route>
+        </Switch>
+      </Suspense>
+    </React.Fragment>
   )
 }
 

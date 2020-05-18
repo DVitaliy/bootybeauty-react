@@ -5,7 +5,7 @@
  * Publish this module on npm service
  */
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import LocalizationContext from './localizationContext'
@@ -13,18 +13,15 @@ import LocalizationContext from './localizationContext'
 const LocalizationState = ({ children, settings }) => {
   const { byDefault } = settings
 
-  console.log('init/Localization')
-
-  const [language, setLanguage] = useState()
+  const [language, setLanguage] = useState(byDefault)
   const [base, setBase] = useState({})
-  const [path, setPath] = useState()
 
   const history = useHistory()
+  const [path, setPath] = useState(history.location.pathname)
 
   useEffect(() => {
     console.log('run/useEffect (path)', path, language)
-    const [, pathMatch = language || byDefault] =
-      (path || history.location.pathname).match(/^\/(\w{2})\//) || []
+    const [, pathMatch = language] = path.match(/^\/(\w{2})\//) || []
 
     console.log('   setLanguage', pathMatch)
     if (pathMatch !== language) setLanguage(pathMatch)
@@ -35,16 +32,11 @@ const LocalizationState = ({ children, settings }) => {
     console.log('run/useEffect (1)')
     let timerTimeout
 
-    console.log(' subscrube/history.listen')
     history.listen(location => {
-      //console.log('********* history.listen ********* :', location)
+      console.log('  history.listen (1)', location)
       if (timerTimeout) clearTimeout(timerTimeout)
       timerTimeout = setTimeout(setPath.bind(null, location.pathname), 10)
     })
-    return () => {
-      console.log('return/useEffect (1)')
-      alert('return/useEffect (1)')
-    }
     // eslint-disable-next-line
   }, [])
 
@@ -71,9 +63,10 @@ const LocalizationState = ({ children, settings }) => {
   }, [language, base])
 
   const t = text => (base[language] && base[language][text]) || text
+
   return (
     <LocalizationContext.Provider
-      value={{ t, language, setLanguage, byDefault }}
+      value={{ language, t, setLanguage, byDefault }}
     >
       {children}
     </LocalizationContext.Provider>

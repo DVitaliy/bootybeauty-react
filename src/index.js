@@ -1,5 +1,7 @@
 /** TODO
  *
+ * (C) - check process.env.REACT_APP_LOCALIZATION on PC environment
+ *
  * Priority Flow:
  * (!) - critical
  * (A) - high
@@ -28,7 +30,7 @@ render(
     <Router history={createBrowserHistory()}>
       <Localization
         settings={{
-          byDefault: process.env.REACT_APP_LOCALIZATION
+          byDefault: 'en' //process.env.REACT_APP_LOCALIZATION
         }}
       >
         <AppState
