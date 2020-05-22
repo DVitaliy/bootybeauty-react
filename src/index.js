@@ -30,7 +30,7 @@ render(
     <Router history={createBrowserHistory()}>
       <Localization
         settings={{
-          byDefault: 'en' //process.env.REACT_APP_LOCALIZATION
+          byDefault: 'ru' //process.env.REACT_APP_LOCALIZATION
         }}
       >
         <AppState

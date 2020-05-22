@@ -5,7 +5,7 @@
  * Publish this module on npm service
  */
 
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import LocalizationContext from './localizationContext'

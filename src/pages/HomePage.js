@@ -44,6 +44,7 @@ const HomePage = () => {
       <Suspense fallback={<div>Загрузка...</div>}>
         {isAuthorized && <StatisticPrivat />}
       </Suspense>
+
       {beauties.isError && <div>Something went wrong ...</div>}
       {beauties.isLoading ? (
         <div>Loading ...</div>
@@ -57,6 +58,7 @@ const HomePage = () => {
       <button onClick={handleClickAsync} disabled={beauties.isLoading}>
         callAsync
       </button>
+
       <button onClick={handleClickSync}>callSync</button>
       <button onClick={() => appAction.beauties.func1()}>func1</button>
     </React.Fragment>

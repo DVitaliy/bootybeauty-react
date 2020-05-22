@@ -15,7 +15,7 @@
 import React, { Suspense } from 'react'
 import { Redirect, Route, Switch, Link } from 'react-router-dom'
 //import PropTypes from 'prop-types'
-import { Beauty, Beauties } from 'pages'
+import { Beauties } from 'pages'
 
 //import { HomePage } from '../pages/HomePage'
 import { useTranslate } from './localization'
@@ -33,6 +33,9 @@ const delay = ms => {
 const HomePage = React.lazy(() =>
   delay(2000).then(() => import('../pages/HomePage'))
 )
+const BeautyPage = React.lazy(() =>
+  delay(2000).then(() => import('../pages/BeautyPage'))
+)
 //const HomePage = React.lazy(() => import('../pages/HomePage'))
 
 const Routing = () => {
@@ -40,7 +43,7 @@ const Routing = () => {
 
   console.log('-init/Routing')
 
-  const ROOT_PATH = '/:language([a-z]{2})'
+  const ROOT_PATH = '/:languageParam([a-z]{2})'
   const DEFAULT_PATH = `/${language}`
 
   return (
@@ -87,8 +90,10 @@ const Routing = () => {
             <Link to={`${DEFAULT_PATH}/alphachanneling/1234`}>booty</Link>
           </Route>
 
-          <Route path={`${ROOT_PATH}/:beauty/:booty([0-9]{4})?`}>
-            <Beauty />
+          <Route
+            path={`${ROOT_PATH}/:beautyParam([\\w.]{4,29})/:bootyParam([0-9]{4})?`}
+          >
+            <BeautyPage />
           </Route>
 
           {/* <Route

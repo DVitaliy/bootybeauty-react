@@ -1,23 +1,21 @@
 const Reduser = (state, action) => {
   switch (action.type) {
-    case 'ADD_INIT':
+    case 'FETCH_INIT':
       return {
         ...state,
         isLoading: true,
         isError: false
       }
-    case 'ADD_SUCCESS':
+    case 'FETCH_SUCCESS':
       return {
         ...state,
         isLoading: false,
         isError: false,
         data: [...state.data, action.payload]
       }
-    case 'ADD_FAILURE':
-      return { ...state }
-    case 'TEST':
-      console.log('*beauties/Reduser/', state, action)
-      return { ...state }
+    case 'FETCH_FAILURE':
+      return { ...state, isLoading: false, isError: true }
+
     default:
       throw new Error()
   }
