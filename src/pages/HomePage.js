@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useAppState } from '../service/appstate'
 
 const delay = ms => {
@@ -17,7 +17,7 @@ const StatisticPrivat = React.lazy(() =>
 const HomePage = () => {
   console.log('--init/Home', useAppState())
 
-  let { language } = useParams()
+  let { languageParam } = useParams()
   const [appState, appAction] = useAppState()
 
   // List of beauties
@@ -40,8 +40,8 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
-      <h1>Home page {language}</h1>
-      <Suspense fallback={<div>Загрузка...</div>}>
+      <h1>Home page</h1>
+      <Suspense fallback={<div>Загрузка StatisticPrivat...</div>}>
         {isAuthorized && <StatisticPrivat />}
       </Suspense>
 
@@ -51,16 +51,18 @@ const HomePage = () => {
       ) : (
         <div>
           {beauties.data.map((item, index) => (
-            <h3 key={index}>{item.name}</h3>
+            <Link key={index} to={`/${languageParam}/${item.name}`}>
+              {item.name}
+            </Link>
           ))}
         </div>
       )}
+      <Link to={`/${languageParam}/notfound`}>notfound_model</Link>
       <button onClick={handleClickAsync} disabled={beauties.isLoading}>
         callAsync
       </button>
 
       <button onClick={handleClickSync}>callSync</button>
-      <button onClick={() => appAction.beauties.func1()}>func1</button>
     </React.Fragment>
   )
 }

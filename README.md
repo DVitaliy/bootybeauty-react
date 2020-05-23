@@ -1,6 +1,7 @@
 Readme
-https://korysno.pro/obnazhennaya-zhivopis-kak-pishut-kartiny-grudyu/
 
+art
+https://korysno.pro/obnazhennaya-zhivopis-kak-pishut-kartiny-grudyu/
 https://medium.com/@musin/%D1%80%D0%B8%D1%81%D1%83%D0%BD%D0%BA%D0%B8-%D0%BF%D0%BE%D0%BF%D0%BE%D0%B9-8e869ee4cdec
 
 HomePage

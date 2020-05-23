@@ -2,21 +2,21 @@ const Actions = {
   findOne: obj => (state, dispatch, api) => {
     return new Promise((resolve, reject) => {
       const key = Object.keys(obj)[0]
-      const value = obj[key]
+      const value = Object.values(obj)[0]
 
-      const data = state.data.find(item => {
+      const item = state.data.find(item => {
         const target = typeof value === 'string' ? value.toLowerCase() : value
         const source =
           typeof value === 'string' ? item[key].toLowerCase() : item[key]
         return target === source
       })
 
-      if (data) return resolve(data)
+      if (item) return resolve(item)
 
-      dispatch({ type: 'FETCH_INIT' })
+      dispatch({ type: 'API_INIT' })
 
       setTimeout(() => {
-        dispatch({ type: 'FETCH_FAILURE' })
+        dispatch({ type: 'API_FINISH' })
 
         return reject('data not found')
       }, 1000)
@@ -25,9 +25,10 @@ const Actions = {
 
   callAsync: data => (state, dispatch, api) => {
     return new Promise((resolve, reject) => {
-      dispatch({ type: 'ADD_INIT' })
+      dispatch({ type: 'API_INIT' })
       setTimeout(() => {
-        dispatch({ type: 'ADD_SUCCESS', payload: { name: 'callAsync' } })
+        dispatch({ type: 'API_FINISH' })
+        dispatch({ type: 'SET_STATE', payload: { name: 'callAsync' } })
         console.log('**beauties/Actions/callAsync/Promise', state)
 
         return resolve(data)
@@ -36,15 +37,8 @@ const Actions = {
   },
 
   callSync: data => ({
-    type: 'ADD_SUCCESS',
+    type: 'SET_STATE',
     payload: { name: 'callSync' }
-  }),
-
-  func11: data => console.log('state'),
-  func1: data => state => console.log('func1 getState', state),
-  func2: data => data,
-  func3: data => data,
-  func4: data => data,
-  func5: data => data
+  })
 }
 export default Actions

@@ -52,42 +52,18 @@ const Routing = () => {
         {t('test')} {language}
       </h1>
       <Header />
-      <Suspense fallback={<div>Загрузка...</div>}>
+      <Suspense fallback={<div>Загрузка PAGE...</div>}>
         <Switch>
           <Route exact path="/">
             <Redirect to={`${DEFAULT_PATH}/`} />
           </Route>
-          {/* <Route
-            exact
-            path="/"
-            render={routeProps => (
-              <div>
-                {console.log('Switch - Redirect', language, routeProps)}
-                <h1>Redirect</h1>
-                {language && <Redirect to={`${DEFAULT_PATH}/`} />}
-              </div>
-            )}
-          /> */}
 
           <Route exact path={ROOT_PATH}>
             <HomePage />
           </Route>
 
-          {/* <Route
-            exact
-            path={ROOT_PATH}
-            render={routeProps => (
-              <div>
-                {console.log('Switch - HomePage', routeProps)}
-                <h1>HomePage</h1>
-              </div>
-            )}
-          /> */}
-
           <Route exact path={`${ROOT_PATH}/beauties`}>
             <Beauties />
-            <Link to={`${DEFAULT_PATH}/alphachanneling`}>beauty</Link> |{' '}
-            <Link to={`${DEFAULT_PATH}/alphachanneling/1234`}>booty</Link>
           </Route>
 
           <Route
@@ -96,14 +72,6 @@ const Routing = () => {
             <BeautyPage />
           </Route>
 
-          {/* <Route
-            render={routeProps => (
-              <div>
-                {console.log('Switch - No match', routeProps)}
-                <h1>No match</h1>
-              </div>
-            )}
-          /> */}
           <Route>
             <h1>No match</h1>
           </Route>

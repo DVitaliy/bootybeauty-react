@@ -1,20 +1,20 @@
 const Reduser = (state, action) => {
   switch (action.type) {
-    case 'FETCH_INIT':
+    case 'API_INIT':
       return {
         ...state,
-        isLoading: true,
-        isError: false
+        isLoading: true
       }
-    case 'FETCH_SUCCESS':
+    case 'API_FINISH':
       return {
         ...state,
-        isLoading: false,
-        isError: false,
+        isLoading: false
+      }
+    case 'SET_STATE':
+      return {
+        ...state,
         data: [...state.data, action.payload]
       }
-    case 'FETCH_FAILURE':
-      return { ...state, isLoading: false, isError: true }
 
     default:
       throw new Error()

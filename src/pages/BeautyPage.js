@@ -5,15 +5,12 @@ import { useAppState } from '../service/appstate'
 //import { useTranslate } from '../service/localization'
 
 const BeautyPage = () => {
-  const [appState, appAction] = useAppState()
+  const [, appAction] = useAppState()
   const { languageParam, beautyParam, bootyParam = 'none' } = useParams()
 
-  const [beauty, setBeauty] = useState()
+  const [beauty, setBeauty] = useState({})
 
   useEffect(() => {
-    //if ()
-    console.log('BeautyPage/useEffect ', appState)
-
     const findOne = async name => {
       try {
         const data = await appAction.beauties.findOne({ name })
@@ -21,18 +18,19 @@ const BeautyPage = () => {
         console.log('BeautyPage/useEffect data ', data)
       } catch (e) {
         console.log('BeautyPage/useEffect error ', e)
+        setBeauty({ name: 'not found' })
       }
     }
 
     findOne(beautyParam)
-
     // eslint-disable-next-line
   }, [setBeauty])
 
-  //const
+  const { name: beautyName } = beauty
 
   return (
     <>
+      <h1>{beautyName}</h1>
       <i>
         Beauty page {beautyParam} {bootyParam} {languageParam}
       </i>
