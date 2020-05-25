@@ -1,5 +1,41 @@
 /*
 http://www.js-craft.io/blog/making-a-responsive-css-grid-layout-with-just-3-properties/
 https://www.youtube.com/watch?v=M7m_3b1Jjzc
-body {
-} */
+
+Шпаргалка по Grid
+https://tpverstak.ru/grid/
+Шпаргалка по Flexbox
+https://tpverstak.ru/flex-cheatsheet/
+
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.beauty-details {
+  border: 1px #eee dotted;
+  display: grid;
+  grid-template-areas:
+    'a r '
+    'a i ';
+  grid-template-columns: 20vw 1fr;
+  grid-template-rows: repeat(2, auto);
+  grid-gap: 2vw;
+}
+
+.beauty-details > div {
+  background-color: #eee;
+  font-size: calc(12px + 1vmin);
+}
+
+.beauty-details .avatar {
+  grid-area: a;
+  height: 20vw;
+}
+.beauty-details .real-name {
+  grid-area: r;
+}
+.beauty-details .insta-name {
+  grid-area: i;
+}

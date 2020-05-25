@@ -33,10 +33,11 @@ const delay = ms => {
 const HomePage = React.lazy(() =>
   delay(2000).then(() => import('../pages/HomePage'))
 )
-const BeautyPage = React.lazy(() =>
-  delay(2000).then(() => import('../pages/BeautyPage'))
-)
+// const BeautyPage = React.lazy(() =>
+//   delay(2000).then(() => import('../pages/BeautyPage'))
+// )
 //const HomePage = React.lazy(() => import('../pages/HomePage'))
+const BeautyPage = React.lazy(() => import('../pages/BeautyPage'))
 
 const Routing = () => {
   const { t, language } = useTranslate()

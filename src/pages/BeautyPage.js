@@ -30,10 +30,28 @@ const BeautyPage = () => {
 
   return (
     <>
+      <hr />
+
+      <div className="beauty-details">
+        <div className="avatar">:-)</div>
+        <div className="real-name">Real name</div>
+        <div className="insta-name">Instagam Name</div>
+      </div>
       <h1>{beautyName}</h1>
       <i>
         Beauty page {beautyParam} {bootyParam} {languageParam}
       </i>
+
+      <label htmlFor="wizards">Who's the best wizard?</label>
+      <input type="text" id="wizards" name="wizards" list="wizards-list" />
+
+      <datalist id="wizards-list">
+        <option>Harry Potter</option>
+        <option>Hermione</option>
+        <option>Dumbledore</option>
+        <option>Merlin</option>
+        <option>Gandalf</option>
+      </datalist>
     </>
   )
 }
