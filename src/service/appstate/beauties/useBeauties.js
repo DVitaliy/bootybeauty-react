@@ -10,11 +10,23 @@ import Actions from './actions'
 import useAsyncActions from '../useAsyncActions'
 //import useStoreState from '../useStoreState'
 
+const dbTEST = [
+  {
+    name: 'Sandra',
+    followers: 1000,
+    booties: [
+      { id: 1, photo: ['url_to_photo1'], colors: ['color1', 'color2'] },
+      { id: 2, photo: ['url_to_photo2'], colors: ['color1', 'color2'] },
+      { id: 3, photo: ['url_to_photo3'], colors: ['color1', 'color2'] }
+    ]
+  },
+  { name: 'Lora' }
+]
+
 const useBeauties = api => {
   const initialState = {
-    data: [{ name: 'Sandra' }, { name: 'Lora' }],
-    isLoading: false,
-    isError: false
+    data: [...dbTEST],
+    isLoading: false
   }
   //const [storeState, storeSubscribe] = useStoreState(initialState, 'beauties')
   const [state, dispatch] = useReducer(Reducer, initialState /*storeState*/)

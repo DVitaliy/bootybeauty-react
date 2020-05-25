@@ -68,7 +68,7 @@ const Routing = () => {
           </Route>
 
           <Route
-            path={`${ROOT_PATH}/:beautyParam([\\w.]{4,29})/:bootyParam([0-9]{4})?`}
+            path={`${ROOT_PATH}/:beautyParam([\\w.]{4,29})/:bootyParam([0-9]{0,1})?`}
           >
             <BeautyPage />
           </Route>

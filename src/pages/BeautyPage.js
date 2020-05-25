@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import { useAppState } from '../service/appstate'
 //import { useTranslate } from '../service/localization'
 
 const BeautyPage = () => {
   const [, appAction] = useAppState()
-  const { languageParam, beautyParam, bootyParam = 'none' } = useParams()
+  const { languageParam, beautyParam, bootyParam } = useParams()
 
   const [beauty, setBeauty] = useState({})
 
@@ -26,7 +26,7 @@ const BeautyPage = () => {
     // eslint-disable-next-line
   }, [setBeauty])
 
-  const { name: beautyName } = beauty
+  const { name: beautyName, booties = [] } = beauty
 
   return (
     <>
@@ -37,7 +37,24 @@ const BeautyPage = () => {
         <div className="real-name">Real name</div>
         <div className="insta-name">Instagam Name</div>
       </div>
+
       <h1>{beautyName}</h1>
+
+      <div className="beauty-booties">
+        {booties.map((item, index) => (
+          <div
+            className={`booty ${item.id === bootyParam ? 'active' : ''}`}
+            key={index}
+          >
+            {console.log(item.id, bootyParam)}
+            <Link to={`/${languageParam}/${beautyParam}/${item.id}`}>
+              {item.id}
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      <hr />
       <i>
         Beauty page {beautyParam} {bootyParam} {languageParam}
       </i>

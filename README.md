@@ -8,6 +8,14 @@ arr.splice(to, 0, arr.splice(from, 1)[0]);
 console.log(arr) //[1,2,4,5,3]
 }
 
+{
+let arr = [1,2,3,4,5]
+const from = 2
+const to = 4
+arr.splice(to, 0, arr.splice(from, 1)[0]);
+console.log(arr) //[1,2,4,5,3]
+}
+
 https://codepen.io/oliviale/pen/GRKQoKM
 
 art

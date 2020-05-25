@@ -13,6 +13,11 @@ https://tpverstak.ru/flex-cheatsheet/
   padding: 0;
 }
 
+#root {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .beauty-details {
   border: 1px #eee dotted;
   display: grid;
@@ -38,4 +43,24 @@ https://tpverstak.ru/flex-cheatsheet/
 }
 .beauty-details .insta-name {
   grid-area: i;
+}
+
+.beauty-booties {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.beauty-booties .booty {
+  background-color: #eee;
+  flex-basis: 200px;
+  /* width: 200px;
+  height: 200px; */
+
+  justify-content: space-around;
+}
+.beauty-booties .booty {
+  background-color: #eee;
+  flex-basis: 200px;
+  /* width: 200px;
+  height: 200px; */
 }
