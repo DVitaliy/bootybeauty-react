@@ -17,7 +17,10 @@ const dbTEST = [
     booties: [
       { id: 1, photo: ['url_to_photo1'], colors: ['color1', 'color2'] },
       { id: 2, photo: ['url_to_photo2'], colors: ['color1', 'color2'] },
-      { id: 3, photo: ['url_to_photo3'], colors: ['color1', 'color2'] }
+      { id: 3, photo: ['url_to_photo3'], colors: ['color1', 'color2'] },
+      { id: 4, photo: ['url_to_photo1'], colors: ['color1', 'color2'] },
+      { id: 5, photo: ['url_to_photo2'], colors: ['color1', 'color2'] },
+      { id: 6, photo: ['url_to_photo3'], colors: ['color1', 'color2'] }
     ]
   },
   { name: 'Lora' }

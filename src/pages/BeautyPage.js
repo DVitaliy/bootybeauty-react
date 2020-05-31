@@ -32,13 +32,30 @@ const BeautyPage = () => {
     <>
       <hr />
 
-      <div className="beauty-details">
-        <div className="avatar">:-)</div>
-        <div className="real-name">Real name</div>
-        <div className="insta-name">Instagam Name</div>
+      <div
+        className={`main-container ${
+          bootyParam ? 'booty-active' : 'beauty-active'
+        }`}
+      >
+        {/* <div className="second-container"> */}
+        <div className="beauty-avatar">
+          <div
+            style={{ width: '100%', height: '200px', backgroundColor: 'red' }}
+          >
+            )
+          </div>
+        </div>
+        <div className="beauty-description">
+          <div>Real name,</div> <div>Instagam Name,</div> <div>details</div>
+        </div>
+        {/* </div> */}
+        <div className="booty-item">Lot</div>
+        <div className="booty-details">details</div>
       </div>
 
-      <h1>{beautyName}</h1>
+      <h1>
+        <Link to={`/${languageParam}/${beautyParam}`}>{beautyName}</Link>
+      </h1>
 
       <div className="beauty-booties">
         {booties.map((item, index) => (
@@ -46,9 +63,8 @@ const BeautyPage = () => {
             className={`booty ${item.id === bootyParam ? 'active' : ''}`}
             key={index}
           >
-            {console.log(item.id, bootyParam)}
             <Link to={`/${languageParam}/${beautyParam}/${item.id}`}>
-              {item.id}
+              Lot#{item.id}
             </Link>
           </div>
         ))}
@@ -58,17 +74,6 @@ const BeautyPage = () => {
       <i>
         Beauty page {beautyParam} {bootyParam} {languageParam}
       </i>
-
-      <label htmlFor="wizards">Who's the best wizard?</label>
-      <input type="text" id="wizards" name="wizards" list="wizards-list" />
-
-      <datalist id="wizards-list">
-        <option>Harry Potter</option>
-        <option>Hermione</option>
-        <option>Dumbledore</option>
-        <option>Merlin</option>
-        <option>Gandalf</option>
-      </datalist>
     </>
   )
 }

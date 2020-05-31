@@ -13,17 +13,118 @@ https://tpverstak.ru/flex-cheatsheet/
   padding: 0;
 }
 
-#root {
+/* #root {
   max-width: 900px;
   margin: 0 auto;
+} */
+
+body {
+  background: #ee7752;
+  min-width: 320px;
+  /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
+  /* background-size: 400% 400%; */
+  /* animation: gradient 15s ease infinite; */
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.path {
+  stroke-dasharray: 5000;
+  stroke-dashoffset: 5000;
+  animation: dash 15s linear alternate infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+/*
+.main-container {
+  display: flex;
+  flex-grow: 1;
+  border: 1px #eee dotted;
+}
+.second-container {
+  display: flex;
+}
+.main-container > div {
+  background-color: #eee;
+  margin: 10px;
+}
+.beauty-active .booty-item,
+.beauty-active .booty-details {
+  display: none;
+}
+.booty-item {
+  flex-grow: 3;
+}
+.booty-active .second-container {
+  flex-direction: column;
+}
+.beauty-active .second-container {
+  flex: 1 1 100%;
+}
+.beauty-active .beauty-avatar,
+.beauty-active .beauty-description {
+  flex: 1 1 50%;
+  margin: 10px;
+}*/
+
+.main-container {
+  display: grid;
+  grid-gap: 10px;
+  border: 1px #eee dotted;
+  transition: all 0.3s ease;
+}
+.main-container > div {
+  background-color: #eee;
+}
+.beauty-active {
+  grid-template-columns: 320px auto;
+  grid-template-areas: 'ava des';
+}
+.booty-active {
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas:
+    'ava itm det'
+    'des itm det';
+}
+.beauty-active .booty-item,
+.beauty-active .booty-details {
+  display: none;
+}
+
+.beauty-avatar {
+  grid-area: ava;
+}
+.beauty-description {
+  grid-area: des;
+}
+.booty-item {
+  grid-area: itm;
+}
+.booty-details {
+  grid-area: det;
+}
+
+/*
 .beauty-details {
   border: 1px #eee dotted;
   display: grid;
   grid-template-areas:
     'a r '
-    'a i ';
+    'a . ';
   grid-template-columns: 20vw 1fr;
   grid-template-rows: repeat(2, auto);
   grid-gap: 2vw;
@@ -43,6 +144,7 @@ https://tpverstak.ru/flex-cheatsheet/
 }
 .beauty-details .insta-name {
   grid-area: i;
+  display: none;
 }
 
 .beauty-booties {
@@ -53,14 +155,22 @@ https://tpverstak.ru/flex-cheatsheet/
 .beauty-booties .booty {
   background-color: #eee;
   flex-basis: 200px;
-  /* width: 200px;
-  height: 200px; */
 
   justify-content: space-around;
 }
 .beauty-booties .booty {
   background-color: #eee;
   flex-basis: 200px;
-  /* width: 200px;
-  height: 200px; */
+}
+*/
+
+@media only screen and (max-width: 1024px) {
+  body {
+    background: #f5ad11;
+  }
+}
+@media only screen and (max-width: 768px) {
+  body {
+    background: #fff06c;
+  }
 }

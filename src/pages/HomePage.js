@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useAppState } from '../service/appstate'
+import BackGround from '../components/background'
 
 const delay = ms => {
   return new Promise(resolve => {
@@ -15,8 +16,6 @@ const StatisticPrivat = React.lazy(() =>
 )
 
 const HomePage = () => {
-  console.log('--init/Home', useAppState())
-
   let { languageParam } = useParams()
   const [appState, appAction] = useAppState()
 
@@ -40,10 +39,15 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
+      <BackGround />
+
       <h1>Home page</h1>
-      <Suspense fallback={<div>Загрузка StatisticPrivat...</div>}>
-        {isAuthorized && <StatisticPrivat />}
-      </Suspense>
+
+      {isAuthorized && (
+        <Suspense fallback={<div>Загрузка StatisticPrivat...</div>}>
+          <StatisticPrivat />
+        </Suspense>
+      )}
 
       {beauties.isError && <div>Something went wrong ...</div>}
       {beauties.isLoading ? (
