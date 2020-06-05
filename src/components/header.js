@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { useAppState } from '../service/appstate'
+import NavBar from './navbar'
 
-const NavBar = ({ children }) => {
+const NavBar2 = ({ children }) => {
   console.log('--init/NavBar')
   const [appState, appAction] = useAppState()
   const { beauties, auth } = appState

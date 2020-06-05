@@ -49,10 +49,10 @@ const Routing = () => {
 
   return (
     <React.Fragment>
+      <Header />
       <h1>
         {t('test')} {language}
       </h1>
-      <Header />
       <Suspense fallback={<div>Загрузка PAGE...</div>}>
         <Switch>
           <Route exact path="/">

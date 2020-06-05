@@ -5,10 +5,10 @@ const BackGround = () => {
     <div>
       <svg viewBox="0 0 265 577" height="100vh">
         <path
-          fill-opacity="0.5"
+          fillOpacity="0.5"
           fill="#fff084"
           stroke="none"
-          stroke-width="0"
+          strokeWidth="0"
           d="M 79.75,40.00
            C 74.00,44.12 68.25,50.00 69.62,58.12
              71.00,64.38 82.75,80.62 92.12,84.12
@@ -36,10 +36,10 @@ const BackGround = () => {
         />
 
         <path
-          fill-opacity="0.5"
+          fillOpacity="0.5"
           fill="#cad6e2"
           stroke="none"
-          stroke-width="0"
+          strokeWidth="0"
           d="M 178.25,403.00
            C 182.50,404.00 189.25,408.00 195.50,403.75
              213.00,415.00 235.75,458.00 206.25,480.00
@@ -56,7 +56,7 @@ const BackGround = () => {
           id="lips"
           fill="none"
           stroke="black"
-          stroke-width="1"
+          strokeWidth="1"
           d="M 54.58,111.08
            C 54.58,111.08 56.83,107.83 56.83,107.83
              59.08,109.92 66.42,109.17 68.50,106.50M 100.42,101.42
@@ -69,11 +69,11 @@ const BackGround = () => {
         />
 
         <path
-          class="path"
+          className="path"
           fill="none"
           stroke="black"
-          stroke-width="1"
-          stroke-opacity="0.5"
+          strokeWidth="1"
+          strokeOpacity="0.5"
           d="M 168.00,169.12
            C 164.25,160.62 159.00,151.88 150.25,143.88
              143.25,137.50 135.50,127.75 133.75,120.00
