@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import { useAppState } from '../service/appstate'
@@ -7,14 +7,31 @@ import '../styles/NavBar.css'
 //https://codepen.io/mrmlnc/pen/gpKbXM
 
 const NavBar = () => {
+  const refContainer = useRef(null)
+  useEffect(() => {
+    let timerTimeout
+    const headlerScroll = e => {
+      if (timerTimeout) clearTimeout(timerTimeout)
+      timerTimeout = setTimeout(() => {
+        if (window.pageYOffset)
+          refContainer.current.classList.add('is-scrolled')
+        else refContainer.current.classList.remove('is-scrolled')
+      }, 100)
+    }
+    window.addEventListener('scroll', headlerScroll)
+    return () => window.removeEventListener('scroll', headlerScroll)
+  }, [])
+
   const onButtonClick = e => {
-    e.currentTarget.classList.toggle('-active')
-    e.currentTarget.previousElementSibling.classList.toggle('-on')
+    refContainer.current.classList.toggle('active')
+
+    // e.currentTarget.classList.toggle('-active')
+    // e.currentTarget.previousElementSibling.classList.toggle('-on')
   }
 
   return (
-    <div className="navbar-component">
-      <div className="navbar area">
+    <div className="navbar-component" ref={refContainer}>
+      <div className="navbar">
         <Link to="/" className="brand">
           Brand
         </Link>

@@ -1,8 +1,9 @@
 import React from 'react'
 
+import '../styles/BackGround.css'
 const BackGround = () => {
   return (
-    <div>
+    <div className="background-component">
       <svg viewBox="0 0 265 577" height="100vh">
         <path
           fillOpacity="0.5"
@@ -190,6 +191,10 @@ const BackGround = () => {
              59.60,450.80 57.50,464.40 56.25,478.25
              56.25,478.25 50.25,569.25 50.25,569.25"
         />
+        <g strokeOpacity="1" fill="none" stroke="black" strokeWidth="1">
+          <rect strokeWidth="10" x="100" y="365" width="140" height="150" />
+          <rect x="110" y="375" width="120" height="130" />
+        </g>
       </svg>
     </div>
   )

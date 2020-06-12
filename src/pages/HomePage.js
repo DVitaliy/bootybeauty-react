@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { useAppState } from '../service/appstate'
 import BackGround from '../components/background'
 
+import '../styles/HomePage.css'
+
 const delay = ms => {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -39,9 +41,12 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
-      <BackGround />
-
-      <h1>Home page</h1>
+      <section className="main-container">
+        <div className="header-container">Site information</div>
+        <div className="backgr-container">
+          <BackGround />
+        </div>
+      </section>
 
       {isAuthorized && (
         <Suspense fallback={<div>Загрузка StatisticPrivat...</div>}>

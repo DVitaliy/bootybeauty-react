@@ -38,17 +38,6 @@ body {
   }
 }
 
-.path {
-  stroke-dasharray: 5000;
-  stroke-dashoffset: 5000;
-  animation: dash 15s linear alternate infinite;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
 /*
 .main-container {
   display: flex;
@@ -81,6 +70,7 @@ body {
   margin: 10px;
 }*/
 
+/*
 .main-container {
   display: grid;
   grid-gap: 10px;
@@ -117,6 +107,8 @@ body {
 .booty-details {
   grid-area: det;
 }
+
+*/
 
 /*
 .beauty-details {

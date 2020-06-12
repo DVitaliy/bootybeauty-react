@@ -30,19 +30,17 @@ const delay = ms => {
   })
 }
 
-const HomePage = React.lazy(() =>
-  delay(2000).then(() => import('../pages/HomePage'))
-)
+// const HomePage = React.lazy(() =>
+//   delay(2000).then(() => import('../pages/HomePage'))
+// )
 // const BeautyPage = React.lazy(() =>
 //   delay(2000).then(() => import('../pages/BeautyPage'))
 // )
-//const HomePage = React.lazy(() => import('../pages/HomePage'))
+const HomePage = React.lazy(() => import('../pages/HomePage'))
 const BeautyPage = React.lazy(() => import('../pages/BeautyPage'))
 
 const Routing = () => {
   const { t, language } = useTranslate()
-
-  console.log('-init/Routing')
 
   const ROOT_PATH = '/:languageParam([a-z]{2})'
   const DEFAULT_PATH = `/${language}`
@@ -50,9 +48,9 @@ const Routing = () => {
   return (
     <React.Fragment>
       <Header />
-      <h1>
+      {/* <h1>
         {t('test')} {language}
-      </h1>
+      </h1> */}
       <Suspense fallback={<div>Загрузка PAGE...</div>}>
         <Switch>
           <Route exact path="/">
