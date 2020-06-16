@@ -54,6 +54,7 @@ https://yellowimages.com/stock/loza-furniture-shop-app-ui-kit-53086/
 
 modal
 https://tympanus.net/Development/ModalWindowEffects/
+https://edenbodyworks.com/blogs/news/10-influential-women-of-color-making-history - use animation background
 
 Animated SVG Icons
 https://tympanus.net/Development/AnimatedSVGIcons/

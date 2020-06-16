@@ -1,5 +1,8 @@
-.background-component {
+svg {
+  /* height: 100vh; */
+  height: inherit;
 }
+
 /*
 .path {
   stroke-dasharray: 5000;

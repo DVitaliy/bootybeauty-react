@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useAppState } from '../service/appstate'
-import BackGround from '../components/background'
+import SvgBeauty from '../components/svg-beauty'
 
 import '../styles/HomePage.css'
 
@@ -42,9 +42,11 @@ const HomePage = () => {
   return (
     <React.Fragment>
       <section className="main-container">
-        <div className="header-container">Site information</div>
+        <div className="header-container">
+          <h1>Site information</h1>
+        </div>
         <div className="backgr-container">
-          <BackGround />
+          <SvgBeauty />
         </div>
       </section>
 

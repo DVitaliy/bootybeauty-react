@@ -1,16 +1,15 @@
 import React from 'react'
 
-import '../styles/BackGround.css'
-const BackGround = () => {
+import '../styles/SvgBeauty.css'
+const SvgBeauty = () => {
   return (
-    <div className="background-component">
-      <svg viewBox="0 0 265 577" height="100vh">
-        <path
-          fillOpacity="0.5"
-          fill="#fff084"
-          stroke="none"
-          strokeWidth="0"
-          d="M 79.75,40.00
+    <svg viewBox="0 0 265 577">
+      <path
+        fillOpacity="0.5"
+        fill="#fff084"
+        stroke="none"
+        strokeWidth="0"
+        d="M 79.75,40.00
            C 74.00,44.12 68.25,50.00 69.62,58.12
              71.00,64.38 82.75,80.62 92.12,84.12
              92.12,84.12 119.75,94.62 119.75,94.62
@@ -34,14 +33,14 @@ const BackGround = () => {
              42.88,99.75 39.50,94.88 38.25,84.00
              37.50,69.50 40.50,62.00 44.75,55.88
              51.38,48.12 77.88,35.25 88.88,30.25 Z"
-        />
+      />
 
-        <path
-          fillOpacity="0.5"
-          fill="#cad6e2"
-          stroke="none"
-          strokeWidth="0"
-          d="M 178.25,403.00
+      <path
+        fillOpacity="0.5"
+        fill="#cad6e2"
+        stroke="none"
+        strokeWidth="0"
+        d="M 178.25,403.00
            C 182.50,404.00 189.25,408.00 195.50,403.75
              213.00,415.00 235.75,458.00 206.25,480.00
              204.75,480.75 193.75,473.75 174.75,480.75
@@ -51,14 +50,14 @@ const BackGround = () => {
              153.00,473.00 136.00,467.50 124.50,480.75
              144.25,458.50 163.25,425.50 126.00,401.50
              132.00,403.00 141.50,405.50 144.25,401.75 Z"
-        />
+      />
 
-        <path
-          id="lips"
-          fill="none"
-          stroke="black"
-          strokeWidth="1"
-          d="M 54.58,111.08
+      <path
+        id="lips"
+        fill="none"
+        stroke="black"
+        strokeWidth="1"
+        d="M 54.58,111.08
            C 54.58,111.08 56.83,107.83 56.83,107.83
              59.08,109.92 66.42,109.17 68.50,106.50M 100.42,101.42
            C 99.42,105.17 95.83,108.42 86.50,105.25M 72.50,136.50
@@ -67,15 +66,15 @@ const BackGround = () => {
              77.25,135.67 81.42,133.58 81.42,133.58
              81.42,133.58 88.83,138.67 88.83,138.67
              85.42,143.50 81.00,144.42 78.25,142.33"
-        />
+      />
 
-        <path
-          className="path"
-          fill="none"
-          stroke="black"
-          strokeWidth="1"
-          strokeOpacity="0.5"
-          d="M 168.00,169.12
+      <path
+        className="path"
+        fill="none"
+        stroke="black"
+        strokeWidth="1"
+        strokeOpacity="0.5"
+        d="M 168.00,169.12
            C 164.25,160.62 159.00,151.88 150.25,143.88
              143.25,137.50 135.50,127.75 133.75,120.00
              130.38,108.62 127.88,103.50 119.38,100.00
@@ -190,13 +189,12 @@ const BackGround = () => {
              55.30,420.50 50.40,429.00 56.75,443.25
              59.60,450.80 57.50,464.40 56.25,478.25
              56.25,478.25 50.25,569.25 50.25,569.25"
-        />
-        <g strokeOpacity="1" fill="none" stroke="black" strokeWidth="1">
-          <rect strokeWidth="10" x="100" y="365" width="140" height="150" />
-          <rect x="110" y="375" width="120" height="130" />
-        </g>
-      </svg>
-    </div>
+      />
+      <g strokeOpacity="1" fill="none" stroke="black" strokeWidth="1">
+        <rect strokeWidth="10" x="100" y="365" width="140" height="150" />
+        <rect x="110" y="375" width="120" height="130" />
+      </g>
+    </svg>
   )
 }
-export default BackGround
+export default SvgBeauty
