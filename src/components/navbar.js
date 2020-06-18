@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { useAppState } from '../service/appstate'
 import '../styles/NavBar.css'
@@ -7,6 +7,11 @@ import '../styles/NavBar.css'
 //https://codepen.io/mrmlnc/pen/gpKbXM
 
 const NavBar = () => {
+  let { languageParam } = useParams()
+  const [appState, appAction] = useAppState()
+  const { auth } = appState
+  const { isAuthorized } = auth
+
   const refContainer = useRef(null)
   useEffect(() => {
     let timerTimeout
@@ -28,6 +33,9 @@ const NavBar = () => {
     // e.currentTarget.classList.toggle('-active')
     // e.currentTarget.previousElementSibling.classList.toggle('-on')
   }
+  const headlerCloseNavBar = e => {
+    //onButtonClick()
+  }
 
   return (
     <div className="navbar-component" ref={refContainer}>
@@ -35,7 +43,7 @@ const NavBar = () => {
         <Link to="/" className="brand">
           Brand
         </Link>
-        <nav role="navigation" className="list">
+        <nav role="navigation" className="list" onClick={headlerCloseNavBar}>
           <a href="#" className="item -link">
             Home
           </a>
@@ -45,6 +53,10 @@ const NavBar = () => {
           <a href="#" className="item -link">
             Projects
           </a>
+          <Link to={`/${languageParam}/notfound`} className="item -link">
+            notfound
+          </Link>
+          {isAuthorized ? <button>Logout</button> : <button>Login</button>}
         </nav>
         <button className="toggle" onClick={onButtonClick}>
           <span className="icon" />

@@ -21,6 +21,7 @@ import { Beauties } from 'pages'
 import { useTranslate } from './localization'
 
 import Header from '../components/header'
+import Modal from '../components/modal'
 
 const delay = ms => {
   return new Promise(resolve => {
@@ -48,6 +49,7 @@ const Routing = () => {
   return (
     <React.Fragment>
       <Header />
+      <Modal />
       {/* <h1>
         {t('test')} {language}
       </h1> */}

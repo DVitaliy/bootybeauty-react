@@ -1,6 +1,6 @@
 .main-container {
   display: grid;
-  grid-gap: 10px;
+  /* grid-gap: 10px; */
   height: 100vh;
   grid-template-rows: repeat(10, 1fr);
   grid-template-columns: repeat(12, 1fr);
@@ -19,7 +19,7 @@
 
 @media (max-width: 768px) {
   .main-container {
-    min-height: 800px;
+    min-height: 700px;
   }
   .header-container {
     grid-row: 2 / 6;
