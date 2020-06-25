@@ -13,8 +13,24 @@ https://tpverstak.ru/flex-cheatsheet/
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  width: 20px;
 }
 
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
 /* #root {
   max-width: 900px;
   margin: 0 auto;
@@ -23,9 +39,15 @@ https://tpverstak.ru/flex-cheatsheet/
 body {
   background: #ee7752;
   min-width: 320px;
+  height: 100vh;
+  overflow: hidden;
   /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
   /* background-size: 400% 400%; */
   /* animation: gradient 15s ease infinite; */
+}
+#root {
+  height: 100vh;
+  overflow: auto;
 }
 
 @keyframes gradient {

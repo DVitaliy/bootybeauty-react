@@ -1,13 +1,24 @@
 import React, { useEffect, useRef } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 import { useAppState } from '../service/appstate'
+import { useTranslate } from '../service/localization'
 import '../styles/NavBar.css'
 
-//https://codepen.io/mrmlnc/pen/gpKbXM
+const MenuLink = ({ children, to, activeOnlyWhenExact }) => {
+  let match = useRouteMatch({
+    path: to,
+    exact: activeOnlyWhenExact
+  })
 
+  return (
+    <Link to={to} className={(match ? '-active ' : '') + 'item -link'}>
+      {children}
+    </Link>
+  )
+}
 const NavBar = () => {
-  let { languageParam } = useParams()
+  const { t, language } = useTranslate()
   const [appState, appAction] = useAppState()
   const { auth } = appState
   const { isAuthorized } = auth
@@ -15,16 +26,16 @@ const NavBar = () => {
   const refContainer = useRef(null)
   useEffect(() => {
     let timerTimeout
+    const rootEl = document.getElementById('root')
     const headlerScroll = e => {
       if (timerTimeout) clearTimeout(timerTimeout)
       timerTimeout = setTimeout(() => {
-        if (window.pageYOffset)
-          refContainer.current.classList.add('is-scrolled')
+        if (rootEl.scrollTop) refContainer.current.classList.add('is-scrolled')
         else refContainer.current.classList.remove('is-scrolled')
       }, 100)
     }
-    window.addEventListener('scroll', headlerScroll)
-    return () => window.removeEventListener('scroll', headlerScroll)
+    rootEl.addEventListener('scroll', headlerScroll)
+    return () => rootEl.removeEventListener('scroll', headlerScroll)
   }, [])
 
   const onButtonClick = e => {
@@ -40,22 +51,16 @@ const NavBar = () => {
   return (
     <div className="navbar-component" ref={refContainer}>
       <div className="navbar">
-        <Link to="/" className="brand">
+        <Link to={`/${language}/`} className="brand">
           Brand
         </Link>
-        <nav role="navigation" className="list" onClick={headlerCloseNavBar}>
-          <a href="#" className="item -link">
+        <nav role="navigation" onClick={headlerCloseNavBar}>
+          <MenuLink to={`/${language}/`} activeOnlyWhenExact={true}>
             Home
-          </a>
-          <a href="#" className="item -link">
-            Articles
-          </a>
-          <a href="#" className="item -link">
-            Projects
-          </a>
-          <Link to={`/${languageParam}/notfound`} className="item -link">
-            notfound
-          </Link>
+          </MenuLink>
+          <MenuLink to={`/${language}/beauties`} activeOnlyWhenExact={true}>
+            Beauties
+          </MenuLink>
           {isAuthorized ? <button>Logout</button> : <button>Login</button>}
         </nav>
         <button className="toggle" onClick={onButtonClick}>
