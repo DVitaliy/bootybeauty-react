@@ -45,7 +45,12 @@ const NavBar = () => {
     // e.currentTarget.previousElementSibling.classList.toggle('-on')
   }
   const headlerCloseNavBar = e => {
+    e.stopPropagation()
+    if (e.target.tagName !== 'NAV')
+      refContainer.current.classList.remove('active')
     //onButtonClick()
+    // e.persist()
+    // console.log(e)
   }
 
   return (
@@ -61,7 +66,11 @@ const NavBar = () => {
           <MenuLink to={`/${language}/beauties`} activeOnlyWhenExact={true}>
             Beauties
           </MenuLink>
-          {isAuthorized ? <button>Logout</button> : <button>Login</button>}
+          {isAuthorized ? (
+            <button>Logout</button>
+          ) : (
+            <button onClick={e => e.stopPropagation()}>Login</button>
+          )}
         </nav>
         <button className="toggle" onClick={onButtonClick}>
           <span className="icon" />
